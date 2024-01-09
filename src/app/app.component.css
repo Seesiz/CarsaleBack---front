@@ -1,0 +1,7 @@
+.side-bar {
+  background: linear-gradient(
+    to bottom,
+    var(--primary-transparent),
+    var(--secondary-transparent)
+  );
+}
