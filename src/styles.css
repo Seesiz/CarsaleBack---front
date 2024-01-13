@@ -17,7 +17,7 @@
 }
 
 .main {
-  backdrop-filter: blur(20px);
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
 }
 
 .content {
@@ -25,6 +25,7 @@
   max-height: 90%;
   border-radius: 20px;
   overflow-y: auto;
+  background-color: white;
 }
 
 .mat-elevation-z8,
@@ -41,12 +42,6 @@
 html,
 body {
   height: 100%;
-}
-
-body {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 .hover {
