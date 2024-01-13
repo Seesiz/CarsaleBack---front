@@ -1,0 +1,38 @@
+<div
+  class="main d-flex flex-row justify-content-between"
+  style="height: 100vh; width: 100vw"
+>
+  <app-side-bar
+    class="col-1"
+    (changeHeader)="changeComponent($event)"
+  ></app-side-bar>
+  <div class="col p-2" style="height: 100vh">
+    <div
+      class="head"
+      class="d-flex flex-row justify-content-between align-items-center p-2"
+      style="height: 10%"
+    >
+      <span class="col-2"></span>
+      <span
+        class="d-flex flex-row justify-content-evenly col"
+        style="color: white"
+      >
+        <span
+          *ngFor="let item of horizontalBar"
+          class="choice"
+          (click)="selected = item"
+          ><b>{{ item.header }}</b>
+          <div class="hover"></div
+        ></span>
+      </span>
+      <span class="col-2"></span>
+    </div>
+    <div class="content col-12 p-4">
+      <app-statistique *ngIf="selected.numero == 1"></app-statistique>
+      <app-marque *ngIf="selected.numero == 2"></app-marque>
+      <app-categorie *ngIf="selected.numero == 3"></app-categorie>
+      <app-modele *ngIf="selected.numero == 4"></app-modele>
+      <app-validation *ngIf="selected.numero == 5"></app-validation>
+    </div>
+  </div>
+</div>

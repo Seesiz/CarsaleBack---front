@@ -1,0 +1,11 @@
+<!-- src/app/components/categorie-list/categorie-list.component.html -->
+<div>
+  <h2>Liste des Catégories</h2>
+  <ul>
+    <li *ngFor="let category of categories">
+      {{ category.name }}
+      <button (click)="deleteCategory(category.id)">Supprimer</button>
+      <button (click)="editCategory(category.id)">Modifier</button>
+    </li>
+  </ul>
+</div>

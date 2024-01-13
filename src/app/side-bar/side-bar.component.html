@@ -1,16 +1,35 @@
-<header style="height: 15%" class="d-flex gap-2 align-items-center px-3">
-  <img src="../../assets/img/CAR_SALE.png" alt="" height="100%" />
-  <span>ADMIN</span>
-</header>
-<mat-accordion class="choice">
-  <mat-expansion-panel *ngFor="let item of data">
-    <mat-expansion-panel-header>
-      <mat-panel-title>{{ item.name }}</mat-panel-title>
-    </mat-expansion-panel-header>
-    <ul style="list-style: none" class="d-flex flex-column gap-2 p-1">
-      <li class="selection p-2" *ngFor="let one of item.choice">
-        {{ one.name }}
-      </li>
-    </ul>
-  </mat-expansion-panel>
-</mat-accordion>
+<div
+  class="d-flex flex-column justify-content-between align-items-center"
+  style="height: 100vh"
+>
+  <span class="text-center p-3" style="color: black">
+    <span>CarSale Admin</span></span
+  >
+  <span
+    style="font-size: 20px; color: #ff512f !important"
+    class="d-flex flex-column justify-content-evenly col"
+  >
+    <span
+      class="d-flex flex-column justify-content-evenly align-items-center big"
+      (click)="changeHeader.emit(component[0])"
+    >
+      <i class="fa-solid fa-chart-simple"></i>
+      <p style="font-size: 12px">Statistique</p>
+    </span>
+    <span
+      class="d-flex flex-column justify-content-evenly align-items-center big"
+      (click)="changeHeader.emit(component[1])"
+    >
+      <i class="fa-solid fa-car"></i>
+      <p style="font-size: 12px">Caractéristique</p>
+    </span>
+    <span
+      class="d-flex flex-column justify-content-evenly align-items-center big"
+      (click)="changeHeader.emit(component[2])"
+    >
+      <i class="fa-solid fa-scroll"></i>
+      <p style="font-size: 12px">Annonces</p>
+    </span>
+  </span>
+  <span></span>
+</div>
