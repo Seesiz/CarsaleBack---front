@@ -5,9 +5,6 @@ import { AppComponent } from './app.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { CategorieListComponent } from './models/categorie-list/categorie-list/categorie-list.component';
-import { GenericService } from 'src/services/generic.service';
-import { CategorieEditComponent } from './models/categoire-edit/categorie-edit/categorie-edit.component';
 import { MainComponent } from './main/main.component';
 import { StatistiqueComponent } from './statistique/statistique.component';
 import { MarqueComponent } from './Caracter/marque/marque.component';
@@ -23,8 +20,6 @@ import { MatButtonModule } from '@angular/material/button';
   declarations: [
     AppComponent,
     SideBarComponent,
-    CategorieListComponent,
-    CategorieEditComponent,
     MainComponent,
     StatistiqueComponent,
     MarqueComponent,
@@ -33,7 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
     ValidationComponent,
   ],
 
-  providers: [GenericService],
+  providers: [],
   imports: [
     BrowserModule,
     MatExpansionModule,
