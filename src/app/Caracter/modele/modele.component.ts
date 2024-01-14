@@ -16,6 +16,9 @@ export class ModeleComponent {
   data: any[] = [];
   listCategorie: any[] = [];
   listMarque: any[] = [];
+  nom: string = '';
+  marque: number = this.listMarque[0].idMarque;
+  categorie: number = this.listCategorie[0].idCategorie;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   async ngAfterViewInit() {
