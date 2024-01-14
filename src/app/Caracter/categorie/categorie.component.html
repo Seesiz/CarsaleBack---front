@@ -1,1 +1,60 @@
-<p>categorie works!</p>
+<div class="d-flex flex-row gap-2">
+    <div action="" class="card col-12 p-3">
+      <header
+        class="d-flex align-items-center flex-row justify-content-between p-2"
+      >
+        <span style="font-size: 20px">Liste des categories de voitures:</span>
+        <span class="d-flex flex-row gap-2">
+          <input
+            type="text"
+            class="form-control"
+            name="nom"
+            id="nom"
+            [(ngModel)]="nom"
+            placeholder="Designation"
+          />
+          <button
+            mat-flat-button
+            style="background-color: var(--secondary)"
+            (click)="insert()"
+          >
+            Ajouter
+          </button>
+        </span>
+        <span class="d-flex flex-row gap-2">
+          <input
+            type="search"
+            class="form-control"
+            name=""
+            id=""
+            placeholder="Recherche"
+          />
+        </span>
+      </header>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="Designation">
+          <th mat-header-cell *matHeaderCellDef>Designation</th>
+          <td mat-cell *matCellDef="let element">{{ element.designation }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let element">
+            <span class="d-flex flex-row gap-2">
+              <i class="fa fa-edit"></i>
+              <i class="fa fa-trash"></i>
+            </span>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+  

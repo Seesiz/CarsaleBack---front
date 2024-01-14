@@ -20,3 +20,4 @@ export class AppComponent {
     // image.src = imageUrl;
   }
 }
+export const url = 'http://localhost:8080';
