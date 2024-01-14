@@ -16,19 +16,17 @@ export class MarqueComponent implements AfterViewInit {
   nom: string = '';
   modifier: any = {};
   data: any[] = [];
+  searchedText: string = '';
 
-  constructor(
-    private _liveAnnouncer: LiveAnnouncer,
-    private generaliserService: GeneraliserService
-  ) {}
+  constructor(private generaliserService: GeneraliserService) {}
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   async ngAfterViewInit() {
     await this.getAllMarque();
-    this.init();
+    this.init(this.data);
   }
-  init() {
-    this.dataSource = new MatTableDataSource(this.data);
+  init(data: any[]) {
+    this.dataSource = new MatTableDataSource(data);
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
@@ -44,7 +42,7 @@ export class MarqueComponent implements AfterViewInit {
     try {
       const response = await this.generaliserService.insert('marques', data);
       this.data.push(response);
-      this.init();
+      this.init(this.data);
       this.nom = '';
     } catch (error) {
       alert(error);
@@ -68,6 +66,17 @@ export class MarqueComponent implements AfterViewInit {
       );
     } catch (error) {
       alert(error);
+    }
+  }
+
+  search() {
+    if (this.searchedText.toString().trim() != null) {
+      const filterData = this.data.filter((item) =>
+        item.designation.toLowerCase().includes(this.searchedText.toLowerCase())
+      );
+      this.init(filterData);
+    } else {
+      this.init(this.data);
     }
   }
 }
