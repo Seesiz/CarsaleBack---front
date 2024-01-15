@@ -24,7 +24,14 @@
           *ngFor="let item of horizontalBar"
           class="choice"
           (click)="selected = item"
-          ><b>{{ item.header }}</b>
+          ><b
+            [style]="
+              selected.numero == item.numero
+                ? 'color: #ff512f !important'
+                : 'color: white'
+            "
+            >{{ item.header }}</b
+          >
           <div class="hover"></div
         ></span>
       </span>
