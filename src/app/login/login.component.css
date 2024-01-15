@@ -1,0 +1,19 @@
+.connexion {
+  background-image: linear-gradient(
+    to right,
+    #ff512f 0%,
+    #f09819 51%,
+    #ff512f 100%
+  );
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+}
+
+.connexion:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}

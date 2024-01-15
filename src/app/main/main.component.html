@@ -15,7 +15,7 @@
       class="d-flex flex-row justify-content-between align-items-center p-2"
       style="height: 10%"
     >
-      <span class="col-2"></span>
+      <span class="col-1"></span>
       <span
         class="d-flex flex-row justify-content-evenly col"
         style="color: white"
@@ -28,14 +28,16 @@
             [style]="
               selected.numero == item.numero
                 ? 'color: #ff512f !important'
-                : 'color: white'
+                : 'color: black'
             "
             >{{ item.header }}</b
           >
           <div class="hover"></div
         ></span>
       </span>
-      <span class="col-2"></span>
+      <span class="col-1 choice" style="color: rgb(0, 0, 0)">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </span>
     </div>
     <div class="content col-12">
       <app-statistique *ngIf="selected.numero == 1"></app-statistique>

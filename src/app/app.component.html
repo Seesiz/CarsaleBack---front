@@ -1,1 +1,2 @@
-<app-main></app-main>
+<app-main *ngIf="isConnected"></app-main>
+<app-login *ngIf="!isConnected"></app-login>
