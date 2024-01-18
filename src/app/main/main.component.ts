@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent {
+  @Output() connection: EventEmitter<void> = new EventEmitter<void>();
   dataToExport: any = {};
   horizontalBar: any[] = [{ header: 'Statistique', numero: 1 }];
   selected: any = {};

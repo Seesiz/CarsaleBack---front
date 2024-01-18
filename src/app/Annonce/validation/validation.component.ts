@@ -9,26 +9,34 @@ import { AnnonceService } from './../../service/annonce.service';
 @Component({
   selector: 'app-validation',
   templateUrl: './validation.component.html',
-  styleUrls: ['./validation.component.css']
+  styleUrls: ['./validation.component.css'],
 })
 export class ValidationComponent implements AfterViewInit {
-  displayedColumns: string[] = ['Date', 'Annonceur','Model','Couleur','Prix', 'Action'];
+  displayedColumns: string[] = [
+    'Date',
+    'Annonceur',
+    'Model',
+    'Couleur',
+    'Prix',
+    'Action',
+  ];
   dataSource = new MatTableDataSource();
   data: any[] = [];
+  search: string = '';
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     private generaliserService: GeneraliserService,
-    private annonceService:AnnonceService
+    private annonceService: AnnonceService
   ) {}
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   async ngAfterViewInit() {
     await this.getAllAnnonceInvalide();
-    this.init();
+    this.init(this.data);
   }
-  init() {
-    this.dataSource = new MatTableDataSource(this.data);
+  init(data: any[]) {
+    this.dataSource = new MatTableDataSource(data);
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
@@ -36,18 +44,41 @@ export class ValidationComponent implements AfterViewInit {
 
   async getAllAnnonceInvalide() {
     try {
-      const response = await this.generaliserService.getAll('annonces/invalide');
+      const response = await this.generaliserService.getAll(
+        'annonces/invalide'
+      );
       this.data = response;
     } catch (error) {
       alert(error);
     }
   }
-  
-  async valider(idAnnonce:String){
+
+  async valider(idAnnonce: String) {
     await this.annonceService.valider(idAnnonce);
     await this.getAllAnnonceInvalide();
-    await this.init();
+    this.init(this.data);
   }
 
+  searchData() {
+    const lowerText = this.search.toLowerCase();
+    if (lowerText.trim() != '') {
+      const searchData = this.data.filter(
+        (item) =>
+          item.voiture.categorie.designation
+            .toLowerCase()
+            .includes(lowerText) ||
+          item.voiture.model.designation.toLowerCase().includes(lowerText) ||
+          item.voiture.model.marque.designation
+            .toLowerCase()
+            .includes(lowerText) ||
+          (item.annonceur.nom + ' ' + item.annonceur.prenom)
+            .toLowerCase()
+            .includes(lowerText) ||
+          item.voiture.couleur.toLowerCase().includes(lowerText)
+      );
+      this.init(searchData);
+    } else {
+      this.init(this.data);
+    }
+  }
 }
-

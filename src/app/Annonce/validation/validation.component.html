@@ -8,8 +8,10 @@
         <input
           type="search"
           class="form-control"
-          name=""
-          id=""
+          name="search"
+          id="search"
+          [(ngModel)]="search"
+          (keyup)="searchData()"
           placeholder="Recherche"
         />
       </span>
@@ -62,6 +64,9 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    <span *ngIf="dataSource.data.length == 0" class="col-12 text-center p-2">
+      Aucune annonce trouver
+    </span>
     <mat-paginator
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons
