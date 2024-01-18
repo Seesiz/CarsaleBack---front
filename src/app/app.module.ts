@@ -17,6 +17,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import * as fr from '@angular/common/locales/fr';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,7 @@ import { LoginComponent } from './login/login.component';
     LoginComponent,
   ],
 
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   imports: [
     BrowserModule,
     MatExpansionModule,
@@ -44,4 +48,8 @@ import { LoginComponent } from './login/login.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    registerLocaleData(fr.default);
+  }
+}

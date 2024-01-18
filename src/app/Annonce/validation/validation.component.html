@@ -1,58 +1,72 @@
 <div class="d-flex flex-row gap-2">
-    <div action="" class="card col-12 p-3">
-      <header
-        class="d-flex align-items-center flex-row justify-content-between p-2"
-      >
-        <span style="font-size: 20px">Liste des annonces invalides:</span>
-        <span class="d-flex flex-row gap-2">
-          <input
-            type="search"
-            class="form-control"
-            name=""
-            id=""
-            placeholder="Recherche"
-          />
-        </span>
-      </header>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="Date">
-            <th mat-header-cell *matHeaderCellDef>Date</th>
-            <td mat-cell *matCellDef="let element">{{ element.dateAnnonce.replace("T"," ").replace(".000+00:00","") }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Annonceur">
-            <th mat-header-cell *matHeaderCellDef>Annonceur</th>
-            <td mat-cell *matCellDef="let element">{{ element.annonceur.nom+" "+element.annonceur.prenom }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Model">
-            <th mat-header-cell *matHeaderCellDef>Model</th>
-            <td mat-cell *matCellDef="let element">{{ element.voiture.model.designation }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Couleur">
-            <th mat-header-cell *matHeaderCellDef>Couleur</th>
-            <td mat-cell *matCellDef="let element">{{ element.voiture.couleur }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Prix">
-            <th mat-header-cell *matHeaderCellDef>Prix</th>
-            <td mat-cell *matCellDef="let element">{{ element.voiture.prix }}</td>
-        </ng-container>
-        
-        
-        <ng-container matColumnDef="Action">
-          <th mat-header-cell *matHeaderCellDef>Action</th>
-          <td mat-cell *matCellDef="let element">
-                <button class="btn btn-primary" (click)="valider(element.id)" >Valider</button>
-          </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <mat-paginator
-        [pageSizeOptions]="[5, 10, 20]"
-        showFirstLastButtons
-        aria-label="Select page of periodic elements"
-      >
-      </mat-paginator>
-    </div>
+  <div action="" class="card col-12 p-3">
+    <header
+      class="d-flex align-items-center flex-row justify-content-between p-2"
+    >
+      <span style="font-size: 20px">Liste des annonces invalides:</span>
+      <span class="d-flex flex-row gap-2">
+        <input
+          type="search"
+          class="form-control"
+          name=""
+          id=""
+          placeholder="Recherche"
+        />
+      </span>
+    </header>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.dateAnnonce | date }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Annonceur">
+        <th mat-header-cell *matHeaderCellDef>Annonceur</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.annonceur.nom + " " + element.annonceur.prenom }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Model">
+        <th mat-header-cell *matHeaderCellDef>Model</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.voiture.model.designation }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Couleur">
+        <th mat-header-cell *matHeaderCellDef>Couleur</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.voiture.couleur }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Prix">
+        <th mat-header-cell *matHeaderCellDef>Prix</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.voiture.prix.toFixed("2") | number }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-flat-button
+            style="background-color: var(--secondary)"
+            (click)="valider(element.id)"
+          >
+            Valider
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
   </div>
-  
+</div>

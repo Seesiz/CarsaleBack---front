@@ -5,11 +5,10 @@
     >
       <span style="font-size: 20px">Liste des models:</span>
       <span class="d-flex flex-row gap-2">
-        <select>
-          <option value="" *ngFor="let item of listMarque">{{item.designation}}</option>
-        </select>
-        <select>
-          <option value="" *ngFor="let item of listCategorie">{{item.designation}}</option>
+        <select class="form-control">
+          <option value="" *ngFor="let item of listMarque">
+            {{ item.designation }}
+          </option>
         </select>
         <input
           type="text"
@@ -41,12 +40,6 @@
         <th mat-header-cell *matHeaderCellDef>Marque</th>
         <td mat-cell *matCellDef="let element">
           {{ element.marque.designation }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="Categorie">
-        <th mat-header-cell *matHeaderCellDef>Categorie</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.categorie.designation }}
         </td>
       </ng-container>
       <ng-container matColumnDef="Designation">

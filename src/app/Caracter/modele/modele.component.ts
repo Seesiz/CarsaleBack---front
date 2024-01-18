@@ -10,21 +10,20 @@ import { GeneraliserService } from 'src/app/service/generaliser.service';
   styleUrls: ['./modele.component.css'],
 })
 export class ModeleComponent {
-  displayedColumns: string[] = ['Marque', 'Categorie', 'Designation', 'Action'];
+  displayedColumns: string[] = ['Marque', 'Designation', 'Action'];
   dataSource = new MatTableDataSource();
   constructor(private generaliserService: GeneraliserService) {}
   data: any[] = [];
-  listCategorie: any[] = [];
   listMarque: any[] = [];
   nom: string = '';
-  marque: number = this.listMarque[0].idMarque;
-  categorie: number = this.listCategorie[0].idCategorie;
+  marque: number = 0;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+
   async ngAfterViewInit() {
     await this.getAllModel();
-    await this.getAllCategorie();
     await this.getAllMarque();
+    if (this.listMarque.length > 0) this.marque = this.listMarque[0].idMarque;
     this.init();
   }
   init() {
@@ -39,15 +38,6 @@ export class ModeleComponent {
     try {
       const response = await this.generaliserService.getAll('models');
       this.data = response;
-    } catch (error) {
-      alert(error);
-    }
-  }
-
-  async getAllCategorie() {
-    try {
-      const response = await this.generaliserService.getAll('categories');
-      this.listCategorie = response;
     } catch (error) {
       alert(error);
     }
