@@ -32,7 +32,23 @@ export class ModeleComponent {
       this.dataSource.paginator = this.paginator;
     }
   }
-  insert() {}
+  async insert() {
+    const data = {
+      designation: this.nom,
+      marque: { idMarque: this.marque },
+    };
+    if (data.designation.toString().trim() == '') {
+      return;
+    }
+    try {
+      const response = await this.generaliserService.insert('models', data);
+      this.data.push(response);
+      this.init();
+      this.nom = '';
+    } catch (error) {
+      alert(error);
+    }
+  }
 
   async getAllModel() {
     try {

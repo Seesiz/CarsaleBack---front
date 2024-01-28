@@ -5,8 +5,8 @@
     >
       <span style="font-size: 20px">Liste des models:</span>
       <span class="d-flex flex-row gap-2">
-        <select class="form-control">
-          <option value="" *ngFor="let item of listMarque">
+        <select class="form-control" name="marque" [(ngModel)]="marque">
+          <option [value]="item.idMarque" *ngFor="let item of listMarque">
             {{ item.designation }}
           </option>
         </select>
@@ -16,6 +16,7 @@
           name="nom"
           id="nom"
           placeholder="Designation"
+          [(ngModel)]="nom"
         />
         <button
           mat-flat-button
