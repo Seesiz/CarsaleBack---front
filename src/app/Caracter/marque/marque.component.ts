@@ -14,7 +14,6 @@ export class MarqueComponent implements AfterViewInit {
   displayedColumns: string[] = ['Designation', 'Action'];
   dataSource = new MatTableDataSource();
   nom: string = '';
-  modifier: any = {};
   data: any[] = [];
   searchedText: string = '';
 
@@ -58,11 +57,11 @@ export class MarqueComponent implements AfterViewInit {
     }
   }
 
-  async modifierMarque() {
+  async modifierMarque(modifier: any) {
     try {
       const response = await this.generaliserService.modifier(
         'marques',
-        this.modifier
+        modifier
       );
     } catch (error) {
       alert(error);

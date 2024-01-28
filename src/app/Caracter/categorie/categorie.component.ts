@@ -63,4 +63,15 @@ export class CategorieComponent {
       this.init(this.data);
     }
   }
+
+  async modifierCotegorie(modifier: any) {
+    try {
+      const response = await this.generaliserService.modifier(
+        'categories',
+        modifier
+      );
+    } catch (error) {
+      alert(error);
+    }
+  }
 }

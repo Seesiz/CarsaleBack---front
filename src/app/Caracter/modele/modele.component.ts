@@ -17,6 +17,7 @@ export class ModeleComponent {
   listMarque: any[] = [];
   nom: string = '';
   marque: number = 0;
+  searchedText: string = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
@@ -24,10 +25,10 @@ export class ModeleComponent {
     await this.getAllModel();
     await this.getAllMarque();
     if (this.listMarque.length > 0) this.marque = this.listMarque[0].idMarque;
-    this.init();
+    this.init(this.data);
   }
-  init() {
-    this.dataSource = new MatTableDataSource(this.data);
+  init(data: any[]) {
+    this.dataSource = new MatTableDataSource(data);
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
@@ -43,7 +44,7 @@ export class ModeleComponent {
     try {
       const response = await this.generaliserService.insert('models', data);
       this.data.push(response);
-      this.init();
+      this.init(this.data);
       this.nom = '';
     } catch (error) {
       alert(error);
@@ -63,6 +64,32 @@ export class ModeleComponent {
     try {
       const response = await this.generaliserService.getAll('marques');
       this.listMarque = response;
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  search() {
+    if (this.searchedText.toString().trim() != null) {
+      const filterData = this.data.filter((item) =>
+        (item.marque.designation + ' ' + item.designation)
+          .toLowerCase()
+          .includes(this.searchedText.toLowerCase())
+      );
+      this.init(filterData);
+    } else {
+      this.init(this.data);
+    }
+  }
+
+  async modifierModel(modifier: any, index: number) {
+    try {
+      const response = await this.generaliserService.modifier(
+        'models',
+        modifier
+      );
+      this.data[index] = response;
+      this.init(this.data);
     } catch (error) {
       alert(error);
     }
