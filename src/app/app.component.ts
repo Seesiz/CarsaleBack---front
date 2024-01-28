@@ -9,7 +9,7 @@ export class AppComponent {
   isConnected: boolean = false;
 
   ngOnInit() {
-    if (localStorage.getItem('carsaleAdminConnected') != null) {
+    if (sessionStorage.getItem('carsaleAdminConnected') != null) {
       this.isConnected = true;
     }
   }

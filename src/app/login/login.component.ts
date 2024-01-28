@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { GeneraliserService } from '../service/generaliser.service';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class LoginComponent {
   @Output() connection: EventEmitter<void> = new EventEmitter<void>();
+  data: any = {};
+  constructor(private generalise: GeneraliserService) {}
   login() {
-    this.connection.emit();
+    try {
+      const response = this.generalise.insert('admins/login', this.data);
+      this.data = {};
+      this.connection.emit();
+    } catch (error) {
+      alert(error);
+    }
   }
 }

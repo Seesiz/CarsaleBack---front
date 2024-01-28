@@ -70,7 +70,7 @@ export class StatistiqueComponent implements OnInit {
             { label: 'Mai', y: this.statistique[4] },
             { label: 'Juin', y: this.statistique[5] },
             { label: 'Juillet', y: this.statistique[6] },
-            { label: 'Aoüt', y: this.statistique[7] },
+            { label: 'Aout', y: this.statistique[7] },
             { label: 'Septembre', y: this.statistique[8] },
             { label: 'Octobre', y: this.statistique[9] },
             { label: 'Novembre', y: this.statistique[10] },
@@ -83,11 +83,9 @@ export class StatistiqueComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAllAnnee();
-    await this.changeGraph(
-      { target: { value: this.allAnnee[0] } }
-        ? { target: { value: this.allAnnee[0] } }
-        : { target: { value: 0 } }
-    );
+    await this.changeGraph({
+      target: { value: this.allAnnee[0] ? this.allAnnee[0] : 0 },
+    });
   }
 
   async getAllAnnee() {
