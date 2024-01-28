@@ -20,4 +20,9 @@ export class MainComponent {
     this.horizontalBar = data;
     this.selected = this.horizontalBar[0];
   }
+
+  logout() {
+    sessionStorage.removeItem('carsaleAdminConnected');
+    this.connection.emit();
+  }
 }
