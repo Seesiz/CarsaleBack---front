@@ -20,12 +20,13 @@ export class ValidationComponent implements AfterViewInit {
     'Prix',
     'Action',
   ];
+  changeCommission: boolean = false;
   dataSource = new MatTableDataSource();
   data: any[] = [];
   search: string = '';
+  commission: number = 5;
 
   constructor(
-    private _liveAnnouncer: LiveAnnouncer,
     private generaliserService: GeneraliserService,
     private annonceService: AnnonceService
   ) {}
@@ -79,6 +80,18 @@ export class ValidationComponent implements AfterViewInit {
       this.init(searchData);
     } else {
       this.init(this.data);
+    }
+  }
+
+  updateCommission() {
+    this.changeCommission = false;
+    try {
+      const response = this.generaliserService.modifier(
+        'commission',
+        this.commission
+      );
+    } catch (error) {
+      alert(error);
     }
   }
 }

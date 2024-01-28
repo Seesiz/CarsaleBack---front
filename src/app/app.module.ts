@@ -47,6 +47,7 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
     MatButtonModule,
     FormsModule,
     CanvasJSAngularChartsModule,
+    FormsModule,
   ],
   bootstrap: [AppComponent],
 })

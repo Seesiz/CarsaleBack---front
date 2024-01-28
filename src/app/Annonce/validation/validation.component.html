@@ -4,6 +4,26 @@
       class="d-flex align-items-center flex-row justify-content-between p-2"
     >
       <span style="font-size: 20px">Liste des annonces invalides:</span>
+      <span class="d-flex flex-row gap-2 align-items-center">
+        <label for="commission"><b>Commission</b>:</label>
+        <span *ngIf="!changeCommission">
+          {{ commission }}%
+          <i
+            class="fa fa-edit"
+            (click)="changeCommission = !changeCommission"
+          ></i
+        ></span>
+        <span class="d-flex gap-2 align-items-center" *ngIf="changeCommission">
+          <input
+            type="number"
+            name="commission"
+            id="commission"
+            class="form-control"
+            [(ngModel)]="commission"
+          />
+          <i class="fa fa-check" (click)="updateCommission()"></i>
+        </span>
+      </span>
       <span class="d-flex flex-row gap-2">
         <input
           type="search"
