@@ -25,6 +25,7 @@ export class ValidationComponent implements AfterViewInit {
   data: any[] = [];
   search: string = '';
   commission: number = 5;
+  commissionObj:any = {};
 
   constructor(
     private generaliserService: GeneraliserService,
@@ -34,6 +35,7 @@ export class ValidationComponent implements AfterViewInit {
 
   async ngAfterViewInit() {
     await this.getAllAnnonceInvalide();
+    await this.getCommission();
     this.init(this.data);
   }
   init(data: any[]) {
@@ -82,13 +84,23 @@ export class ValidationComponent implements AfterViewInit {
       this.init(this.data);
     }
   }
+  
+  async getCommission(){
+    try {
+      const response = await this.generaliserService.getAll('commissions');
+      this.commissionObj = response;
+      this.commission = this.commissionObj.pourcentage;
+    } catch (error) {
+      alert(error);      
+    }
+    
+  }
 
   updateCommission() {
     this.changeCommission = false;
     try {
-      const response = this.generaliserService.modifier(
-        'commission',
-        this.commission
+      const response = this.generaliserService.insert(
+        'commissions/insert?commission='+this.commission,null
       );
     } catch (error) {
       alert(error);
