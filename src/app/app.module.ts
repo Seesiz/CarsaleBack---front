@@ -21,6 +21,7 @@ import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import * as fr from '@angular/common/locales/fr';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import * as fr from '@angular/common/locales/fr';
     MatPaginatorModule,
     MatButtonModule,
     FormsModule,
+    CanvasJSAngularChartsModule,
   ],
   bootstrap: [AppComponent],
 })
