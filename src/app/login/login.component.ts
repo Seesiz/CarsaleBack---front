@@ -10,11 +10,19 @@ export class LoginComponent {
   @Output() connection: EventEmitter<void> = new EventEmitter<void>();
   data: any = {};
   constructor(private generalise: GeneraliserService) {}
-  login() {
+  async login() {
     try {
-      const response = this.generalise.insert('admins/login', this.data);
+      const form = new FormData();
+      form.append('mail', this.data.mail);
+      form.append('motDePass', this.data.motDePass);
+      const response = await this.generalise.insert('admins/login', form);
       this.data = {};
-      this.connection.emit();
+      if (response.message == undefined) {
+        sessionStorage.setItem('carsaleAdminConnected', response.data.idAdmin);
+        this.connection.emit();
+      } else {
+        alert(response.message);
+      }
     } catch (error) {
       alert(error);
     }
