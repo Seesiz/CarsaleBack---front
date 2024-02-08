@@ -8,7 +8,10 @@ import { GeneraliserService } from '../service/generaliser.service';
 })
 export class LoginComponent {
   @Output() connection: EventEmitter<void> = new EventEmitter<void>();
-  data: any = {};
+  data: any = {
+    mail: 'adminCarsale@gmail.com',
+    motDePass: 'leBronJames222',
+  };
   constructor(private generalise: GeneraliserService) {}
   async login() {
     try {

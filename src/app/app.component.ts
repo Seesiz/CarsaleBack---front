@@ -18,4 +18,4 @@ export class AppComponent {
     this.isConnected = !this.isConnected;
   }
 }
-export const url = 'http://localhost:8080';
+export const url = 'https://carsale-back-production.up.railway.app';
